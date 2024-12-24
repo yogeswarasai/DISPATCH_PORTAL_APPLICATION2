@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatch Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .dashboard {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .username {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #777777;
+            margin-bottom: 10px;
+        }
+
+        .summary-section {
+            margin-top: 30px;
+        }
+
+        .summary-card {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: scale(1.02);
+        }
+
+        .summary-card h2 {
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        .summary-item {
+            margin-bottom: 10px;
+        }
+
+        .summary-label {
+            font-weight: bold;
+            color: #555555;
+        }
+
+        .summary-value {
+            margin-left: 10px;
+        }
+    </style>
+    <script>
+        // Function to fetch data from backend and update UI
+        async function fetchData() {
+            try {
+                const response = await fetch('/dispatch/dashboard');
+                const data = await response.json();
+
+                // Update username
+                document.getElementById('username').textContent = data.username;
+
+                // Update today's parcel summary
+                document.getElementById('totalCountParcelOutToday').textContent = data.totalCountParcelOutToday;
+                document.getElementById('totalCountParcelInToday').textContent = data.totalCountParcelInToday;
+                document.getElementById('totalParcelsToday').textContent = data.totalParcelsToday;
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call fetchData function when page loads
+        window.onload = fetchData;
+    </script>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Welcome to Dispatch Dashboard</h1>
+        <p class="username">Username: <span id="username"></span></p>
+
+        <div class="summary-section">
+            <div class="summary-card">
+                <h2>Today's Parcel Summary</h2>
+                <div class="summary-item">
+                    <span class="summary-label">Total Parcels Dispatched (Parcel Out) Today:</span>
+                    <span class="summary-value" id="totalCountParcelOutToday"></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Parcels Received (Parcel In) Today:</span>
+                    <span class="summary-value" id="totalCountParcelInToday"></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Parcels (In + Out) Today:</span>
+                    <span class="summary-value" id="totalParcelsToday"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
