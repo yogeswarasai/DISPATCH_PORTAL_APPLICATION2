@@ -2,10 +2,6 @@ package com.iocl.Dispatch_Portal_Application.composite_pk;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-
-import lombok.Data;
-
 
 public class MstCourierContractPK implements Serializable {
 

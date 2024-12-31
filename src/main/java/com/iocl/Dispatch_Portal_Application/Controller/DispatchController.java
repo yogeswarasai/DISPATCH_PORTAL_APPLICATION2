@@ -6,14 +6,11 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.lang.reflect.Field;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +33,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,6 +71,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 @RestController
 @RequestMapping("/api/v1/dispatch")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class DispatchController {
 
     @Autowired
@@ -125,12 +124,16 @@ public class DispatchController {
     public ResponseEntity<?> authenticateUser(@RequestBody EmployeeLoginModal loginRequest,HttpServletResponse response) throws Exception {
         return dispatchService.login(loginRequest,response);
     }
-    
+//    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/get-captcha")
     public @ResponseBody ResponseEntity<CaptchaResponseData> getCaptcha() throws IOException {
         return employeeService.getCaptcha();
     }
 
+    @GetMapping("/check-captcha/{captchaValue}")
+    public ResponseEntity<Map<String, String>> checkCaptcha(@PathVariable("captchaValue") String captchaValue) {
+        return employeeService.checkCaptcha(captchaValue);
+    }
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout() {

@@ -1,14 +1,13 @@
 
 package com.iocl.Dispatch_Portal_Application.Security;
 
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 @Data
 public class IncomingRequests {
     private static final String SECRET = "ioclJWTIncomings";

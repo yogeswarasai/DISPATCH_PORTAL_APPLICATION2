@@ -2,12 +2,18 @@ package com.iocl.Dispatch_Portal_Application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class DispatchPortalApplication {
+public class DispatchPortalApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DispatchPortalApplication.class, args);
 	}
 
+	  @Override
+	    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	        return application.sources(DispatchPortalApplication.class);
+	    }
 }

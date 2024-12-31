@@ -61,10 +61,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                .authorizeRequests()
-                .antMatchers("/swagger-ui/**",
+                .antMatchers("/swagger-ui/**", "/dispatch-app/**","/",
                 	    "/swagger-ui.html",
-                	    "/v3/api-docs/**","/api/v1/employee/**","/roles/**","/users/**","/api/v1/dispatch/**","/parcels-in/**","/parcels-out/**","/api/menus/**","/sequences/**","api/courier-contracts").permitAll()
-         //       .antMatchers("/api/v1/dispatch/**").hasRole("DISPATCH")
+                	    "/v3/api-docs/**","/api/v1/employee/**","/roles/**","/users/**","/api/v1/dispatch/**","/parcels-in/**","/parcels-out/**","/api/menus/**","/sequences/**","api/courier-contracts",  "/favicon.ico","/index.html", "/static/**",  "/assets/**","/styles-YQW3JFZ4.css","/polyfills-6EAL64PA.js","/main-JXTZLB2E.js","/chunk-NSLGAEX5.js","/chunk-6LSQCF26.js").permitAll()
+//               .antMatchers(
+//                       "/dispatch-app/swagger-ui/**",
+//                       "/dispatch-app/swagger-ui.html",
+//                       "/dispatch-app/v3/api-docs/**",
+//                       "/dispatch-app/api/v1/employee/**",
+//                       "/dispatch-app/roles/**",
+//                       "/dispatch-app/users/**",
+//                       "/dispatch-app/api/v1/dispatch/**",
+//                       "/dispatch-app/parcels-in/**",
+//                       "/dispatch-app/parcels-out/**",
+//                       "/dispatch-app/api/menus/**",
+//                       "/dispatch-app/sequences/**",
+//                       "/dispatch-app/api/courier-contracts/**"
+//                   ).permitAll()
+               //       .antMatchers("/api/v1/dispatch/**").hasRole("DISPATCH")
                 .anyRequest()
                 .authenticated();
 

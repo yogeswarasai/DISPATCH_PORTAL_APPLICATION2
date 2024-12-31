@@ -34,6 +34,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,8 +47,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iocl.Dispatch_Portal_Application.DTO.ParcelInDto;
 import com.iocl.Dispatch_Portal_Application.DTO.ParcelOutDto;
 import com.iocl.Dispatch_Portal_Application.Entity.MstEmployee;
-import com.iocl.Dispatch_Portal_Application.Entity.TrnParcelIn;
-import com.iocl.Dispatch_Portal_Application.Entity.TrnParcelOut;
 import com.iocl.Dispatch_Portal_Application.Security.JwtUtils;
 import com.iocl.Dispatch_Portal_Application.ServiceLayer.CustomFooter;
 import com.iocl.Dispatch_Portal_Application.ServiceLayer.EmployeeService;
@@ -73,6 +72,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 @RestController
 @RequestMapping("/api/v1/employee")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EmployeeController {
 
     @Autowired
@@ -195,6 +195,8 @@ public class EmployeeController {
     public ResponseEntity<?> logoutUser() {
         return employeeService.logout();
     }
+    
+//    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/get-captcha")
     public @ResponseBody ResponseEntity<CaptchaResponseData> getCaptcha() throws IOException {
         return employeeService.getCaptcha();

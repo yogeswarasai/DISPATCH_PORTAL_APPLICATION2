@@ -1,6 +1,5 @@
 package com.iocl.Dispatch_Portal_Application.composite_pk;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 
 public class MstCourierContractDiscountId implements Serializable {

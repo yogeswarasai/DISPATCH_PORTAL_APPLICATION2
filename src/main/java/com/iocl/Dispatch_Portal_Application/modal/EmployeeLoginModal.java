@@ -1,7 +1,5 @@
 package com.iocl.Dispatch_Portal_Application.modal;
 
-import java.util.UUID;
-
 import lombok.Data;
 
 @Data

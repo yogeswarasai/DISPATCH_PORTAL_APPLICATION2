@@ -2,21 +2,14 @@ package com.iocl.Dispatch_Portal_Application.Entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.iocl.Dispatch_Portal_Application.composite_pk.CourierContractId;
-import com.iocl.Dispatch_Portal_Application.composite_pk.MstCourierContractPK;
 
 @Entity
 @Table(name = "mst_courier_contract")
